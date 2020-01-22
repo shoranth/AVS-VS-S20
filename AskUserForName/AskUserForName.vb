@@ -1,7 +1,8 @@
 ﻿'Anthony Shore
-'Visual Basic Coding Class
+'RCET0265 
 'Spring 2020
-'Ask the user for their name and then respond assignment
+'Say My Name Assignment
+'https://github.com/shoranth/AVS-VS-S20
 
 Option Explicit On
 Option Strict On
