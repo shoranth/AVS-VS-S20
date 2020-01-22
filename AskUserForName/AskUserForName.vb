@@ -3,6 +3,9 @@
 'Spring 2020
 'Ask the user for their name and then respond assignment
 
+Option Explicit On
+Option Strict On
+
 Module Module1
 
     Sub Main()
