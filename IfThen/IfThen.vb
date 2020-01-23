@@ -10,6 +10,7 @@
         Console.WriteLine("What is the Second Number?")
         secondNumber = Console.ReadLine()
 
+
         'This is the complete if then statement
         'If it evaluates to true, it will perform the code within the if then statement
         'If false, it will skip the code in the if then statement
@@ -21,7 +22,10 @@
             'If the first and second numbers are equal then this code will execute since it is the first equal to condition
         ElseIf firstNumber = secondNumber Then
             Console.WriteLine("First number is equal to the Second Number")
-        ElseIf firstNumber <= secondNumber Then
+        End If
+
+
+        If firstNumber <= secondNumber Then
             Console.WriteLine("First number is Less than or equal to the Second Number")
         ElseIf firstNumber >= secondNumber Then
             Console.WriteLine("First number is Greater than or equal to the Second Number")
