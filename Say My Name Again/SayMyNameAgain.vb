@@ -6,11 +6,15 @@
 
 Option Explicit On
 Option Strict On
+'makes the program not case sensative
+Option Compare Text
 
-Module Module1
+
+Module SayMyNameAgain
 
     Sub Main()
         Dim usersName As String
+        'Dim movieQuoteAnswer As String
 
         Console.WriteLine("Hello user. What is your first name?")
         usersName = Console.ReadLine()

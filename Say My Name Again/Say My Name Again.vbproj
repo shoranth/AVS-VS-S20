@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE406C1A-8BE4-4164-B7AE-83CC219B268D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>Say_My_Name_Again.Module1</StartupObject>
+    <StartupObject>Say_My_Name_Again.SayMyNameAgain</StartupObject>
     <RootNamespace>Say_My_Name_Again</RootNamespace>
     <AssemblyName>Say My Name Again</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -69,7 +69,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module1.vb" />
+    <Compile Include="SayMyNameAgain.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
