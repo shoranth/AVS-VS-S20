@@ -28,8 +28,11 @@ Module SubFunctionExample
 
         'doMath(7, 5, "Subtract")
 
-        showPattern(4)
+        'For i = 1 To 50 Step 10
+        showPattern(20, "TIM")
+        'Next
         Console.ReadLine()
+
 
     End Sub
 
@@ -75,15 +78,23 @@ Module SubFunctionExample
 
     End Sub
 
-    Sub showPattern(length As Integer)
+    Sub showPattern(length As Integer, character As String)
 
-        Dim character As String
-        character = "*"
+        'Dim character As String
+        'character = "*"
 
         Dim pattern As String
+        pattern = ""
 
-        For index = 0 To length
+        Console.WriteLine(Len(character))
+
+        For index = 0 To length Step 1
             pattern &= character
+            Console.WriteLine(pattern)
+        Next
+
+        For index = length To 0 Step -1
+            pattern = Left(pattern, index * Len(character))
             Console.WriteLine(pattern)
         Next
 
