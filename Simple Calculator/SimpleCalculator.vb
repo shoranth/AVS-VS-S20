@@ -11,55 +11,78 @@ Option Explicit On
 Module SimpleCalculator
 
     Sub Main()
-
-        Dim firstNumber As Double
-        Dim secondNumber As Double
-        Dim usersOperation As Integer
+        Dim firstNumber As Integer
+        Dim secondNumber As Integer
+        Dim userChoice As String
         Dim quitProgram As Boolean
+        Dim promtUser As Boolean
 
+        promtUser = True
         quitProgram = False
 
-    Do While quitProgram = false
+        Do While quitProgram = False
 
-        Do Until firstNumber = Double
-        Console.WriteLine("This is a simple calculator.")
-        Console.WriteLine("What is the FIRST number you would like in your calculation? Press enter when finished.")
-        firstNumber = Console.ReadLine()
-        loop
+        Console.WriteLine("Please enter a number...")
+            Do While promtUser = True
+                Try
+                    firstNumber = CInt(Console.ReadLine())
+                    promtUser = False
+                Catch ex As Exception
+                    Console.WriteLine("Please enter a whole number")
+                    promtUser = True
+                End Try
+            Loop
 
-        Do Until secondNumber = Double
-        Console.WriteLine("What is the SECOND number you would like in your calculation? Press enter when finished.")
-        secondNumber = Console.ReadLine()
-        loop
+         Console.WriteLine("Please enter a 2nd number...")
+                Try
+                    secondNumber = CInt(Console.ReadLine())
+                Catch ex As Exception
+                    Console.WriteLine("Please enter a whole number")
+                End Try
 
-        Console.WriteLine("Please select an operation for your calculation.")
-        Console.WriteLine("1: Add")
-        Console.WriteLine("2: Subtract") 
-        Console.WriteLine("3: Multiply")
-        Console.WriteLine("4: Divide")
-        usersOperation = Console.ReadLine()
+        Console.WriteLine("Please Choose an Option")
+        Console.WriteLine("1. Add")
+        Console.WriteLine("2. Multiply")
+        userChoice = Console.ReadLine()
 
-        If usersOperation = 1 Then
-            Console.WriteLine(firstNumber + secondNumber)
-        ElseIf usersOperation = 2 Then
-            Console.WriteLine(firstNumber - secondNumber)
-        ElseIf usersOperation = 3 Then
-            Console.WriteLine(firstNumber * secondNumber)
-        ElseIf usersOperation = 4 Then
-            Console.WriteLine(firstNumber / secondNumber)
+        If userChoice = "1" Then
+
+        Try
+                Console.WriteLine(firstNumber + secondNumber)
+                Catch ex As InvalidCastException
+                    Console.WriteLine("Please enter a whole number")
+                Catch ex As Exception
+                    Console.WriteLine("You broke it")
+                End Try
+
+        ElseIf userChoice = "2" Then
+
+                Try
+                Console.WriteLine(firstNumber * secondNumber)
+                Catch ex As InvalidCastException
+                    Console.WriteLine("Please enter a whole number")
+                Catch ex As Exception
+                    Console.WriteLine("You broke it")
+                End Try
+
         Else
-            Console.WriteLine("The value you entered is invalid. Please try again.")
-        End If
 
-        console.writeline("Do you want to quit the calculator? Press any key to run again. Press Q to quit, then press enter.")
-        If Console.ReadLine() = "q" Then 
-            quitProgram = True
+                Console.WriteLine("Invalid Selection")
+
+            End If
+
+            Console.WriteLine("Have a nice day...")
+            Console.WriteLine("Press Enter To Run Again. Enter Q to quit.")
+
+            If Console.ReadLine() = "q" Then
+                quitProgram = True
+
         Else
-            quitProgram = False 
-        End If
-        console.clear()
+                quitProgram = False
+            End If
 
-    Loop
+            Console.Clear()
+        Loop
 
     End Sub
 
