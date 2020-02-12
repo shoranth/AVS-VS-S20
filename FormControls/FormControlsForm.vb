@@ -1,6 +1,6 @@
 ﻿Public Class FormControlsForm
     Private Sub FormControlsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        RadioButton1.Checked = True
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
@@ -21,11 +21,23 @@
     End Sub
 
     Private Sub GoButton_Click(sender As Object, e As EventArgs) Handles GoButton.Click
-        RadioButton1.Checked = True
+
 
         If CheckBox1.Checked = True Then
             DisplayLabel.Text = NameTextBox.Text
         End If
 
+        If CheckBox2.Checked = True Then
+            MsgBox("Your data is no good!!!")
+        End If
+
+        If CheckBox3.Checked = True Then
+            UserPictureBox.Image = My.Resources._5_HARMONIC_FIGURE_1_3
+        Else
+            UserPictureBox.Image = Nothing
+        End If
+
     End Sub
+
+
 End Class
