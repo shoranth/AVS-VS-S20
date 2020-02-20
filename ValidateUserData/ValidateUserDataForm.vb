@@ -4,28 +4,45 @@
     End Sub
 
     Private Sub ValidateButton_Click(sender As Object, e As EventArgs) Handles ValidateButton.Click
+
+        Console.WriteLine(UserMessage(TextBox1.Text, "Please enter text in textbox 1.", False))
+
+
         'IsEmpty()
-        Dim userMessage As String
+        'Dim userMessage As String
 
-        If IsStringEmpty(TextBox3.Text) = True Then
-            userMessage &= "Please enter text in textbox 3." & vbNewLine
-            TextBox3.Select()
-        End If
+        'If IsStringEmpty(TextBox3.Text) = True Then
+        '    userMessage &= "Please enter text in textbox 3." & vbNewLine
+        '    TextBox3.Select()
+        'End If
 
-        If IsStringEmpty(TextBox2.Text) = True Then
-            userMessage &= "Please enter text in textbox 2." & vbNewLine
-            TextBox2.Select()
-        End If
+        'If IsStringEmpty(TextBox2.Text) = True Then
+        '    userMessage &= "Please enter text in textbox 2." & vbNewLine
+        '    TextBox2.Select()
+        'End If
 
-        If IsStringEmpty(TextBox1.Text) = True Then
-            userMessage &= "Please enter text in textbox 1." & vbNewLine
-            TextBox1.Select()
-        End If
+        'If IsStringEmpty(TextBox1.Text) = True Then
+        '    userMessage &= "Please enter text in textbox 1." & vbNewLine
+        '    TextBox1.Select()
+        'End If
 
-        If userMessage <> "" Then
-            MsgBox(userMessage)
-        End If
+        'If userMessage <> "" Then
+        '    MsgBox(userMessage)
+        'End If
     End Sub
+
+    Function UserMessage(stringToTest As String, UniqueMessage As String, clearUserMessage As Boolean) As String
+        Static runningMessage As String = ""
+
+        If clearUserMessage <> True Then
+            runningMessage &= UniqueMessage & vbNewLine
+        Else
+            runningMessage = ""
+        End If
+
+        Return runningMessage
+    End Function
+
 
     'Checks to see if each text box is empty
     Sub IsEmpty()
@@ -74,5 +91,28 @@
         End If
         Return status
     End Function
+
+    Function RunningTotal(currentValue As Integer) As Integer
+
+        Static total As Integer
+
+        'total = total + currentValue
+        total += currentValue
+
+        Return total
+    End Function
+
+    Private Sub TotalButton_Click(sender As Object, e As EventArgs) Handles TotalButton.Click
+
+        Dim tempNumber As Integer
+
+        For i = 1 To 10
+            tempNumber = RunningTotal(5)
+        Next
+
+        Console.WriteLine(tempNumber)
+
+    End Sub
+
 
 End Class
