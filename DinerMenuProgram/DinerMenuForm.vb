@@ -7,7 +7,7 @@
 Public Class DinerMenu
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles SoupButton.Click
 
-        Dim soupItem As String = "Geonosis Fire Ball Soup." & vbNewLine & "Its so hot fire will come out your ears." & vbNewLine & "Served with resfreshing Blue Milk" & vbNewLine & "(Food not available for humans)"
+        Dim soupItem As String = "Geonosis Fire Soup." & vbNewLine & "Its so hot fire will come out your ears." & vbNewLine & "Served with resfreshing Blue Milk" & vbNewLine & "(Food not available for humans)"
 
         DisplaySpecialLabel.Text = soupItem
 
