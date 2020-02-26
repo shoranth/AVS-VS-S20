@@ -24,9 +24,8 @@
         Dim index As Integer
 
         index = InStr(DataListBox.SelectedItem.ToString, " ")
-        FirstNameTextBox.Text = Strings.Left(DataListBox.SelectedItem.ToString, index)
-        LastNameTextBox.Text = Strings.Right(DataListBox.SelectedItem.ToString, index)
-        'TO DO : right() doesn't work
+        FirstNameTextBox.Text = Trim(Strings.Left(DataListBox.SelectedItem.ToString, index))
+        LastNameTextBox.Text = Trim(Strings.Mid(DataListBox.SelectedItem.ToString, index, Len(DataListBox.SelectedItem.ToString)))
 
     End Sub
 End Class
