@@ -28,4 +28,13 @@
         LastNameTextBox.Text = Trim(Strings.Mid(DataListBox.SelectedItem.ToString, index, Len(DataListBox.SelectedItem.ToString)))
 
     End Sub
+
+    Sub Tester()
+
+        Dim someNumber As Double
+        someNumber = 10 * Math.Sin(Math.PI / 2)
+        Console.WriteLine()
+
+    End Sub
+
 End Class
