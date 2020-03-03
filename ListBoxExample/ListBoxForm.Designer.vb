@@ -22,6 +22,7 @@ Partial Class ListBoxForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.DataListBox = New System.Windows.Forms.ListBox()
         Me.AddButton = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
@@ -30,6 +31,7 @@ Partial Class ListBoxForm
         Me.LastNameTextBox = New System.Windows.Forms.TextBox()
         Me.FirstNameLabel = New System.Windows.Forms.Label()
         Me.LastNameLabel = New System.Windows.Forms.Label()
+        Me.ExampleToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'DataListBox
@@ -50,6 +52,7 @@ Partial Class ListBoxForm
         Me.AddButton.Size = New System.Drawing.Size(160, 94)
         Me.AddButton.TabIndex = 1
         Me.AddButton.Text = "&Add Item"
+        Me.ExampleToolTip.SetToolTip(Me.AddButton, "Click here to add a nameto the list")
         Me.AddButton.UseVisualStyleBackColor = True
         '
         'ClearButton
@@ -121,6 +124,7 @@ Partial Class ListBoxForm
         Me.Name = "ListBoxForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "List Box "
+        Me.ExampleToolTip.SetToolTip(Me, "This is the main Form")
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -134,4 +138,5 @@ Partial Class ListBoxForm
     Friend WithEvents LastNameTextBox As TextBox
     Friend WithEvents FirstNameLabel As Label
     Friend WithEvents LastNameLabel As Label
+    Friend WithEvents ExampleToolTip As ToolTip
 End Class
