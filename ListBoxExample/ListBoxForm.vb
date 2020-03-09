@@ -10,11 +10,11 @@
         DataListBox.Items.Add(FirstNameTextBox.Text & " " & LastNameTextBox.Text)
     End Sub
 
-    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
+    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click,
         DataListBox.Items.Clear()
     End Sub
 
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+    Private Sub ExitProgram(sender As Object, e As EventArgs) Handles ExitButton.Click, EditToolStripMenuItem.Click
         Me.Close()
     End Sub
 
@@ -37,4 +37,7 @@
 
     End Sub
 
+    'Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+    '    Me.Close()
+    'End Sub
 End Class

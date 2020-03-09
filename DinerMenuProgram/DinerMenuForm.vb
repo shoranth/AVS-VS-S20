@@ -33,4 +33,5 @@ Public Class DinerMenu
         Me.Close()
     End Sub
 
+
 End Class
