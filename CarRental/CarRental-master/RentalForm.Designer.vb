@@ -141,6 +141,7 @@ Partial Class RentalForm
         Me.NameTextBox.Name = "NameTextBox"
         Me.NameTextBox.Size = New System.Drawing.Size(100, 20)
         Me.NameTextBox.TabIndex = 1
+        Me.NameTextBox.Text = "Bob"
         '
         'AddressTextBox
         '
@@ -148,6 +149,7 @@ Partial Class RentalForm
         Me.AddressTextBox.Name = "AddressTextBox"
         Me.AddressTextBox.Size = New System.Drawing.Size(100, 20)
         Me.AddressTextBox.TabIndex = 3
+        Me.AddressTextBox.Text = "Joe Lane"
         '
         'CityTextBox
         '
@@ -155,6 +157,7 @@ Partial Class RentalForm
         Me.CityTextBox.Name = "CityTextBox"
         Me.CityTextBox.Size = New System.Drawing.Size(100, 20)
         Me.CityTextBox.TabIndex = 5
+        Me.CityTextBox.Text = "Albion"
         '
         'StateTextBox
         '
@@ -162,6 +165,7 @@ Partial Class RentalForm
         Me.StateTextBox.Name = "StateTextBox"
         Me.StateTextBox.Size = New System.Drawing.Size(100, 20)
         Me.StateTextBox.TabIndex = 7
+        Me.StateTextBox.Text = "ID"
         '
         'ZipCodeTextBox
         '
@@ -169,6 +173,7 @@ Partial Class RentalForm
         Me.ZipCodeTextBox.Name = "ZipCodeTextBox"
         Me.ZipCodeTextBox.Size = New System.Drawing.Size(100, 20)
         Me.ZipCodeTextBox.TabIndex = 9
+        Me.ZipCodeTextBox.Text = "83284"
         '
         'BeginOdometerTextBox
         '
@@ -176,6 +181,7 @@ Partial Class RentalForm
         Me.BeginOdometerTextBox.Name = "BeginOdometerTextBox"
         Me.BeginOdometerTextBox.Size = New System.Drawing.Size(100, 20)
         Me.BeginOdometerTextBox.TabIndex = 11
+        Me.BeginOdometerTextBox.Text = "0"
         '
         'EndOdometerTextBox
         '
@@ -183,6 +189,7 @@ Partial Class RentalForm
         Me.EndOdometerTextBox.Name = "EndOdometerTextBox"
         Me.EndOdometerTextBox.Size = New System.Drawing.Size(100, 20)
         Me.EndOdometerTextBox.TabIndex = 13
+        Me.EndOdometerTextBox.Text = "1000"
         '
         'DaysTextBox
         '
@@ -190,6 +197,7 @@ Partial Class RentalForm
         Me.DaysTextBox.Name = "DaysTextBox"
         Me.DaysTextBox.Size = New System.Drawing.Size(100, 20)
         Me.DaysTextBox.TabIndex = 15
+        Me.DaysTextBox.Text = "2"
         '
         'OdometerGroupbox
         '

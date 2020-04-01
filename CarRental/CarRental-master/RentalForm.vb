@@ -15,6 +15,13 @@ Public Class RentalForm
         ValidateOdometer()
         ValidateDaysTextBox()
         MsgBox(UserMessages(True, "", False))
+        DistanceBox.Text = KilometersToMiles().ToString
+        MileageBox.Text = MileageCharge().ToString("C")
+        DayBox.Text = DaysCharge().ToString("C")
+        MinusBox.Text = Discount().ToString("C")
+        YouOweBox.Text = TotalWithDiscount().ToString("C")
+
+
 
         'MileageBox.Text = tempNumber.ToString("C")
     End Sub
@@ -24,7 +31,7 @@ Public Class RentalForm
         Dim userMessage As String
 
         Try
-            If CInt(BeginOdometerTextBox.Text) > CInt(EndOdometerTextBox.Text) Then
+            If CDec(BeginOdometerTextBox.Text) > CDec(EndOdometerTextBox.Text) Then
                 userMessage = "Beginning Odometer Must be Smaller than Ending Odometer."
                 BeginOdometerTextBox.Text = ""
                 EndOdometerTextBox.Text = ""
@@ -127,24 +134,33 @@ Public Class RentalForm
         Return formattedMessages
     End Function
 
-    Function MileageCharge(ByRef miles As Decimal) As Decimal
+    Function KilometersToMiles() As Decimal
+        Dim miles As Decimal
+
+        miles = CDec(EndOdometerTextBox.Text) - CDec(BeginOdometerTextBox.Text)
+
+        If KilometersradioButton.Checked = True Then
+            miles *= CDec(0.62)
+        End If
+
+        Return miles
+    End Function
+
+    Function MileageCharge() As Decimal
         Dim milesCharge As Decimal
+        Dim miles As Decimal = KilometersToMiles()
         Const REGULARRATE = 0.12D
         Const LOWRATE = 0.1D
         Const FREERATE = 0D
-        miles = CDec(EndOdometerTextBox.Text) - CDec(BeginOdometerTextBox.Text)
 
         'Mileage Charge
         'First 200 miles driven are always free. 
         'All miles between 201 And 500 inclusive are .12 cents per mile. 
         'miles greater than 500 are charged at .10 cents per mile.
 
-        If KilometersradioButton.Checked = True Then
-            miles *= 0.62
-        End If
-
+        'The way this case is written is that if the miles go to 201 they are charged for 201 miles and not 1 miles. Is that how it is supposed to be?
         Select Case miles
-            Case < 200
+            Case < 201
                 milesCharge = miles * FREERATE
             Case > 500
                 milesCharge = miles * LOWRATE
@@ -152,29 +168,45 @@ Public Class RentalForm
                 milesCharge = miles * REGULARRATE
         End Select
 
-
-
-
-
-
-
-        Return 0
+        Return milesCharge
     End Function
 
-    Function Discount(totalCharges As Decimal) As Decimal
+    Function DaysCharge() As Integer
+        Const DAYPRICE As Integer = 15
+
+        DaysCharge = CInt(DaysTextBox.Text) * DAYPRICE
+
+        Return DaysCharge
+    End Function
+
+    Function TotalWithoutDiscount() As Decimal
+
+        TotalWithoutDiscount = MileageCharge() + DaysCharge()
+
+        Return TotalWithoutDiscount
+    End Function
+
+    Function Discount() As Decimal
         Dim totalDiscount As Decimal
         Const AAARATE = 0.05D
         Const SENIORATE = 0.03D
 
         If AAAcheckbox.Checked = True Then
-            totalDiscount = totalCharges * AAARATE
+            totalDiscount = TotalWithoutDiscount() * AAARATE
         End If
 
         If Seniorcheckbox.Checked = True Then
-            totalDiscount += totalCharges * SENIORATE
+            totalDiscount += TotalWithoutDiscount() * SENIORATE
         End If
 
         Return totalDiscount
+    End Function
+
+    Function TotalWithDiscount() As Decimal
+
+        TotalWithDiscount = MileageCharge() + DaysCharge() - Discount()
+
+        Return TotalWithDiscount
     End Function
 
     Sub ResetAll()
@@ -200,9 +232,10 @@ Public Class RentalForm
 
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ResetAll()
+        ' ResetAll()
         SummaryButton.Enabled = False
 
 
     End Sub
+
 End Class
