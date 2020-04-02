@@ -7,6 +7,12 @@ Public Class RentalForm
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         Dim tempNumber As Integer = 15
 
+        'If allChecksAreValid() Then
+            ''procede to calcs and updates
+        'Else
+            ''alert user
+        'End If
+
         ValidateNameTextBox()
         ValidateAddressTextBox()
         ValidateCityTextBox()
@@ -22,8 +28,6 @@ Public Class RentalForm
         YouOweBox.Text = TotalWithDiscount().ToString("C")
 
 
-
-        'MileageBox.Text = tempNumber.ToString("C")
     End Sub
 
 
@@ -133,6 +137,12 @@ Public Class RentalForm
 
         Return formattedMessages
     End Function
+
+    'Function ValidateAll() As Boolean
+        'Dim result As Boolean
+        ''Performs all validation checks and returns as true if all checks pass
+        'Return result
+   ' End Function
 
     Function KilometersToMiles() As Decimal
         Dim miles As Decimal
