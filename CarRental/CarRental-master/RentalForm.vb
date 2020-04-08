@@ -3,6 +3,10 @@ Option Strict On
 Option Compare Binary
 Public Class RentalForm
 
+    Public TotalCustomers As Integer
+    Public TotalDistance As Decimal
+    Public TotalCost As Decimal
+
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         Dim tempNumber As Integer = 15
 
@@ -13,39 +17,58 @@ Public Class RentalForm
             MinusBox.Text = Discount().ToString("C")
             YouOweBox.Text = TotalWithDiscount().ToString("C")
             UserMessages(False, "", True)
-
-            Summary()
+            TotalCustomers = Customers()
+            TotalDistance = Distance()
+            TotalCost = Cost()
         Else
             MsgBox(UserMessages(True, "", False))
             UserMessages(False, "", True)
         End If
 
-    End Sub
-
-
-
-
-    Sub Summary()
-        Static totalCustomers As Integer = 0
-        Static totalDistance As Decimal = 0
-        Static totalCharges As Decimal = 0
-
-        'need to add number of customers and display the summary mesg box
-
-        totalDistance += CDec(DistanceBox.Text)
-        totalCharges += CDec(YouOweBox.Text)
-
-        If totalDistance > 0 And totalCharges > 0 Then
+        If TotalDistance > 0 And TotalCost > 0 Then
             SummaryButton.Enabled = True
         End If
 
     End Sub
 
+    Sub Summary(Customers As Integer, Distance As Decimal, Cost As Decimal)
+        Static totalCustomers As Integer
+        Static totalDistance As Decimal
+        Static totalCost As Decimal
 
+        totalCustomers += Customers
+        totalDistance += Distance
+        totalCost += Cost
 
+        MsgBox("Total Customers: " & totalCustomers & vbNewLine & "Total Distance: " & totalDistance & vbNewLine & "Total Charges: " & totalCost.ToString("C"))
 
+    End Sub
 
+    Function Customers() As Integer
+        Static total As Integer
 
+        total += 1
+
+        Return total
+    End Function
+
+    Function Distance() As Decimal
+        Dim stringLength As Integer = Len(DistanceBox.Text)
+        Dim subtractedStringLength As String = LSet(DistanceBox.Text, stringLength - 3)
+        Static total As Decimal
+
+        total += CDec(subtractedStringLength)
+
+        Return total
+    End Function
+
+    Function Cost() As Decimal
+        Static total As Decimal
+
+        total += CDec(YouOweBox.Text)
+
+        Return total
+    End Function
 
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         ResetAll()
@@ -239,7 +262,6 @@ Public Class RentalForm
         Catch
         End Try
 
-
         Return DaysCharge
     End Function
 
@@ -297,10 +319,17 @@ Public Class RentalForm
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
 
-        'How do you bring up a box with yes or no when the exit button is clicked?
-        'How do you make the summary button? How do you add the totals into an array? How do you use an array in VB in forms?
+        'How do I make a summary button without using global variables
 
-        Me.Close()
+        Dim msg = "Are you sure you want to close the program?"
+        Dim style = MsgBoxStyle.YesNo Or MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.Question
+        Dim title = "Car Rental"
+        Dim response = MsgBox(msg, style, title)
+
+        If response = MsgBoxResult.Yes Then
+            Me.Close()
+        End If
+
     End Sub
 
     Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -308,8 +337,13 @@ Public Class RentalForm
         ' ResetAll()
         SummaryButton.Enabled = False
 
-
     End Sub
 
+
+    Private Sub SummaryButton_Click(sender As Object, e As EventArgs) Handles SummaryButton.Click
+
+        MsgBox("Total Customers: " & TotalCustomers & vbNewLine & "Total Distance: " & TotalDistance & vbNewLine & "Total Charges: " & TotalCost.ToString("C"))
+
+    End Sub
 
 End Class

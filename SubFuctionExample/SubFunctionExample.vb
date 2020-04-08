@@ -29,8 +29,9 @@ Module SubFunctionExample
         'doMath(7, 5, "Subtract")
 
         'For i = 1 To 50 Step 10
-        showPattern(20, "TIM")
+        'showPattern(20, "TIM")
         'Next
+        console.writeline(MySub(myNumber:=))
         Console.ReadLine()
 
 
@@ -45,6 +46,7 @@ Module SubFunctionExample
         Console.WriteLine(myNumber)
         Console.ReadLine()
 
+        doMath(firstNumber) = myNumber
 
 
     End Sub
