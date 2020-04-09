@@ -7,9 +7,22 @@ Public Class RentalForm
     Public TotalDistance As Decimal
     Public TotalCost As Decimal
 
+    'Code that Loads when program starts
+    Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ResetAll()
+        SummaryButton.Enabled = False
+    End Sub
+
+    'Clear Button Click
+    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
+        ResetAll()
+    End Sub
+
+    'Calculate Button Click
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         Dim tempNumber As Integer = 15
 
+        'If Statement when true calculates the input data. If checks fail then the user is given a error message box
         If ValidateNameTextBox() = True And ValidateAddressTextBox() = True And ValidateCityTextBox() And ValidateStateTextBox() = True And ValidateZipCodeTextBox() = True And ValidateOdometer() = True And ValidateDaysTextBox() = True Then
             DistanceBox.Text = KilometersToMiles().ToString & " mi"
             MileageBox.Text = MileageCharge().ToString("C")
@@ -25,55 +38,14 @@ Public Class RentalForm
             UserMessages(False, "", True)
         End If
 
+        'Enables the Summary Button if data is input through the calculate button. 
         If TotalDistance > 0 And TotalCost > 0 Then
             SummaryButton.Enabled = True
         End If
 
     End Sub
 
-    Sub Summary(Customers As Integer, Distance As Decimal, Cost As Decimal)
-        Static totalCustomers As Integer
-        Static totalDistance As Decimal
-        Static totalCost As Decimal
-
-        totalCustomers += Customers
-        totalDistance += Distance
-        totalCost += Cost
-
-        MsgBox("Total Customers: " & totalCustomers & vbNewLine & "Total Distance: " & totalDistance & vbNewLine & "Total Charges: " & totalCost.ToString("C"))
-
-    End Sub
-
-    Function Customers() As Integer
-        Static total As Integer
-
-        total += 1
-
-        Return total
-    End Function
-
-    Function Distance() As Decimal
-        Dim stringLength As Integer = Len(DistanceBox.Text)
-        Dim subtractedStringLength As String = LSet(DistanceBox.Text, stringLength - 3)
-        Static total As Decimal
-
-        total += CDec(subtractedStringLength)
-
-        Return total
-    End Function
-
-    Function Cost() As Decimal
-        Static total As Decimal
-
-        total += CDec(YouOweBox.Text)
-
-        Return total
-    End Function
-
-    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
-        ResetAll()
-    End Sub
-
+    'Series of Validate Data functions used to analyze the input from the user
     Function ValidateOdometer() As Boolean
         Dim userMessage As String
         Dim trueOrFalse As Boolean = True
@@ -93,6 +65,7 @@ Public Class RentalForm
         End Try
 
         UserMessages(True, userMessage, False)
+
         Return trueOrFalse
     End Function
 
@@ -193,6 +166,7 @@ Public Class RentalForm
         Return trueOrFalse
     End Function
 
+    'Function used to Construct a single user message with all error messages
     Function UserMessages(addMessage As Boolean, message As String, clearMessage As Boolean) As String
         Static formattedMessages As String
 
@@ -204,12 +178,6 @@ Public Class RentalForm
 
         Return formattedMessages
     End Function
-
-    'Function ValidateAll() As Boolean
-    'Dim result As Boolean
-    ''Performs all validation checks and returns as true if all checks pass
-    'Return result
-    ' End Function
 
     Function KilometersToMiles() As Decimal
         Dim miles As Decimal
@@ -277,6 +245,7 @@ Public Class RentalForm
         Const AAARATE = 0.05D
         Const SENIORATE = 0.03D
 
+        '2 discounts, AAA at 5% and Senior at 3%
         If AAAcheckbox.Checked = True Then
             totalDiscount = TotalWithoutDiscount() * AAARATE
         End If
@@ -288,6 +257,7 @@ Public Class RentalForm
         Return totalDiscount
     End Function
 
+    'Function used to combine all cost into a total
     Function TotalWithDiscount() As Decimal
 
         TotalWithDiscount = MileageCharge() + DaysCharge() - Discount()
@@ -296,8 +266,8 @@ Public Class RentalForm
     End Function
 
     Sub ResetAll()
-        'Clear Everything on the Form
 
+        'Clear Everything on the Form
         NameTextBox.Text = ""
         AddressTextBox.Text = ""
         CityTextBox.Text = ""
@@ -317,11 +287,10 @@ Public Class RentalForm
 
     End Sub
 
+    'Exit Button with warning message before closing
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-
-        'How do I make a summary button without using global variables
-
         Dim msg = "Are you sure you want to close the program?"
+        'Uses MsgBox to display a warning before closing the program. 
         Dim style = MsgBoxStyle.YesNo Or MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.Question
         Dim title = "Car Rental"
         Dim response = MsgBox(msg, style, title)
@@ -332,18 +301,48 @@ Public Class RentalForm
 
     End Sub
 
-    Private Sub RentalForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' ResetAll()
-        SummaryButton.Enabled = False
-
-    End Sub
-
-
     Private Sub SummaryButton_Click(sender As Object, e As EventArgs) Handles SummaryButton.Click
 
+        'Displays strings with the public variables that contain totals from each form
         MsgBox("Total Customers: " & TotalCustomers & vbNewLine & "Total Distance: " & TotalDistance & vbNewLine & "Total Charges: " & TotalCost.ToString("C"))
 
     End Sub
+
+    Sub Summary(Customers As Integer, Distance As Decimal, Cost As Decimal)
+        Static totalCustomers As Integer
+        Static totalDistance As Decimal
+        Static totalCost As Decimal
+
+        totalCustomers += Customers
+        totalDistance += Distance
+        totalCost += Cost
+
+    End Sub
+
+    Function Customers() As Integer
+        Static total As Integer
+
+        total += 1
+
+        Return total
+    End Function
+
+    Function Distance() As Decimal
+        Dim stringLength As Integer = Len(DistanceBox.Text)
+        Dim subtractedStringLength As String = LSet(DistanceBox.Text, stringLength - 3)
+        Static total As Decimal
+
+        total += CDec(subtractedStringLength)
+
+        Return total
+    End Function
+
+    Function Cost() As Decimal
+        Static total As Decimal
+
+        total += CDec(YouOweBox.Text)
+
+        Return total
+    End Function
 
 End Class
