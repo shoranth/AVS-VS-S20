@@ -35,14 +35,14 @@ Partial Class Etch_N_Sketch
         '
         Me.DrawAreaLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.DrawAreaLabel.Cursor = System.Windows.Forms.Cursors.Cross
-        Me.DrawAreaLabel.Location = New System.Drawing.Point(179, 91)
+        Me.DrawAreaLabel.Location = New System.Drawing.Point(12, 19)
         Me.DrawAreaLabel.Name = "DrawAreaLabel"
-        Me.DrawAreaLabel.Size = New System.Drawing.Size(380, 158)
+        Me.DrawAreaLabel.Size = New System.Drawing.Size(776, 343)
         Me.DrawAreaLabel.TabIndex = 0
         '
         'EraseButton
         '
-        Me.EraseButton.Location = New System.Drawing.Point(257, 306)
+        Me.EraseButton.Location = New System.Drawing.Point(189, 384)
         Me.EraseButton.Name = "EraseButton"
         Me.EraseButton.Size = New System.Drawing.Size(75, 23)
         Me.EraseButton.TabIndex = 1
@@ -51,7 +51,7 @@ Partial Class Etch_N_Sketch
         '
         'CursorColorButton
         '
-        Me.CursorColorButton.Location = New System.Drawing.Point(420, 306)
+        Me.CursorColorButton.Location = New System.Drawing.Point(281, 384)
         Me.CursorColorButton.Name = "CursorColorButton"
         Me.CursorColorButton.Size = New System.Drawing.Size(75, 23)
         Me.CursorColorButton.TabIndex = 2
@@ -60,16 +60,16 @@ Partial Class Etch_N_Sketch
         '
         'BackgroundColorButton
         '
-        Me.BackgroundColorButton.Location = New System.Drawing.Point(546, 306)
+        Me.BackgroundColorButton.Location = New System.Drawing.Point(373, 384)
         Me.BackgroundColorButton.Name = "BackgroundColorButton"
-        Me.BackgroundColorButton.Size = New System.Drawing.Size(75, 23)
+        Me.BackgroundColorButton.Size = New System.Drawing.Size(106, 23)
         Me.BackgroundColorButton.TabIndex = 3
         Me.BackgroundColorButton.Text = "Background Color"
         Me.BackgroundColorButton.UseVisualStyleBackColor = True
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(644, 306)
+        Me.ExitButton.Location = New System.Drawing.Point(494, 384)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(75, 23)
         Me.ExitButton.TabIndex = 4
@@ -87,7 +87,7 @@ Partial Class Etch_N_Sketch
         Me.Controls.Add(Me.EraseButton)
         Me.Controls.Add(Me.DrawAreaLabel)
         Me.Name = "Etch_N_Sketch"
-        Me.Text = "Form1"
+        Me.Text = "Etch N Sketch"
         Me.ResumeLayout(False)
 
     End Sub
